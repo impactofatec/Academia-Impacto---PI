@@ -121,7 +121,7 @@ node tests/additional/payments-utils.test.mjs
 
 ---
 
-## Simulação: Kanban (visual / fluxo) — versão para Redmi
+## Kanban (visual / fluxo)
 
 Abaixo há uma representação: uma **kanban textual** (colunas com cartões).
 
