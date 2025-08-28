@@ -118,22 +118,12 @@ node tests/additional/bulk-utils.test.mjs
 node tests/additional/payments-utils.test.mjs
 ```
 
-Para CI/Jest, veja `TESTS_README.md` incluído no repositório.
-
----
-
-## Patches / ZIPs gerados
-
-Vários artefatos foram gerados durante a auditoria e as implementações. Exemplos:
-
-* `gym_repo_p0_p1_p2_phase2_applied.zip` — ZIP com todas as mudanças.
-* Pastas de patches: `/patches_generated`, `/patches_p1_generated`, `/patches_p2_generated`, `/patches_p2_phase2_generated`.
 
 ---
 
 ## Simulação: Kanban (visual / fluxo) — versão para Redmi
 
-Abaixo há duas representações: uma **kanban textual** (colunas com cartões) e uma **simulação visual reduzida** pensada para como seria exibido em um Redmi (tela estreita). Use isto como roteiro/preview para importar tarefas em um verdadeiro board (Trello/Notion/GitHub Projects).
+Abaixo há uma representação: uma **kanban textual** (colunas com cartões).
 
 ### Kanban (texto)
 
@@ -165,62 +155,5 @@ Abaixo há duas representações: uma **kanban textual** (colunas com cartões) 
 * [x] Drag & drop com placeholder (classes)
 * [x] Payment link mock + modal
 
----
-
-### Simulação visual — **como apareceria em um Redmi** (representação ASCII, largura reduzida)
-
-```
-+-----------------------------+
-| GymManager - Kanban (Redmi) |
-+-----------------------------+
-| > Backlog                  |
-|  - API pagamentos         |
-|  - Autenticação           |
-|---------------------------|
-| > Todo                    |
-|  - PATCH /students/:id    |
-|  - POST /checkins/bulk    |
-|---------------------------|
-| > In Progress             |
-|  - Calendar conflicts     |
-|  - Mobile calendar UX     |
-|---------------------------|
-| > Review                  |
-|  - Export CSV server-side |
-|---------------------------|
-| > Done                    |
-|  - Bulk actions (mock)    |
-|  - Drag & drop aulas      |
-+---------------------------+
-
-// No Redmi, o fluxo costuma ser vertical (colunas empilhadas / swipe)
-// Cada cartão pode abrir um modal com detalhes, comentários e checklist.
-```
-
-> Dica: para testar a usabilidade mobile, abra o DevTools do navegador, ative o modo de dispositivo móvel, escolha um perfil de tela (ex.: 360×800) e carregue o link do kanban (ou esta README como preview). A experiência de Kanban mobile tipicamente converte colunas em painéis empilhados ou implementa swipe horizontal.
 
 ---
-
-## Notas de desenvolvimento & segurança
-
-* **CSV**: client-side tem mitigação básica contra CSV injection; para produção, gere CSV no backend e sanitize com regras por coluna.
-* **CSP**: o projeto não usa `eval()`; se o servidor setar uma política CSP restritiva, ajuste-a apenas com cautela. Evite `unsafe-eval` em produção.
-* **Autenticação**: nenhuma alteração de auth foi feita; se seu backend usar JWT, não exponha endpoints sensíveis sem verificação.
-
----
-
-## Como contribuir
-
-1. Faça um fork e crie uma branch `feature/x`.
-2. Aplique patches se necessário (há .patchs no diretório `patches_*`).
-3. Abra PR descrevendo a feature e testes incluídos.
-
----
-
-Se quiser, eu posso:
-
-* Gerar um board real no Trello/Notion com as tarefas acima; ou
-* Exportar o Kanban em formato JSON/CSV pronto para importar em ferramentas (Trello/GitHub Projects); ou
-* Criar um arquivo `kanban.md` com templates de cartões e checklists para cada tarefa.
-
-Diga qual desses você prefere que eu gere em seguida.
